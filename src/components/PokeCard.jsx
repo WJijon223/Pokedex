@@ -65,8 +65,8 @@ export default function PokeCard(props) {
         <h4>#{getFullPokedexNumber(selectedPokemon)}</h4>
         <h2>{name}</h2>
         <div className="type-container">
-          {types.map((type, typeIndex) => {
-            return <TypeCard key={typeIndex} type={type} />;
+          {types.map((typeObject, typeIndex) => {
+            return <TypeCard key={typeIndex} type={typeObject.type.name} />;
           })}
         </div>
       </div>
