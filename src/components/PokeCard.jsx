@@ -9,6 +9,18 @@ export default function PokeCard(props) {
 
   const { name, height, abilities, stats, types, moves, sprites } = data || {};
 
+  const imgList = Object.keys(sprites || {}).filter((val) => {
+    if (!sprites[val]) {
+      return false;
+    }
+    if (["version", "versions", "other"].includes(val)) {
+      return false;
+    }
+    return true;
+
+    // return (sprites[val] && !(['version','other'].includes(val)));
+  });
+
   useEffect(() => {
     // if loading, we're gonna exit loop
     if (loading || !localStorage) {
@@ -69,6 +81,24 @@ export default function PokeCard(props) {
             return <TypeCard key={typeIndex} type={typeObject.type.name} />;
           })}
         </div>
+      </div>
+      <img
+        className="default-img"
+        src={"/pokemon/" + getFullPokedexNumber(selectedPokemon) + ".png"}
+        alt={`${name}-large-img`}
+      />
+      <div className="img-container">
+        {imgList.map((spriteUrl, spriteIndex) => {
+          console.log(spriteUrl);
+          const imgUrl = sprites[spriteUrl];
+          return (
+            <img
+              key={spriteIndex}
+              src={imgUrl}
+              alt={`${name}-img-${spriteUrl}`}
+            />
+          );
+        })}
       </div>
     </div>
   );
