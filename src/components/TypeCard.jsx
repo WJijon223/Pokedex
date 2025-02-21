@@ -8,7 +8,6 @@ export default function TypeCard(props) {
       className="type-tile"
       style={{
         color: pokemonTypeColors?.[type].color,
-        background: pokemonTypeColors?.[type]?.color,
         background: pokemonTypeColors?.[type]?.background,
       }}
     >
